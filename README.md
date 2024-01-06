@@ -1,0 +1,1 @@
+Android basic project which implements user registration and login using Retrofit and RxJava. The project is modularized and ready to scale.
