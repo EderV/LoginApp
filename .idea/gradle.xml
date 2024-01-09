@@ -12,8 +12,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/lib" />
             <option value="$PROJECT_DIR$/lib/entities" />
+            <option value="$PROJECT_DIR$/lib/http-requests" />
             <option value="$PROJECT_DIR$/lib/preferences" />
-            <option value="$PROJECT_DIR$/lib/requests" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

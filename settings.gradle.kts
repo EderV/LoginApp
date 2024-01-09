@@ -15,6 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "LoginApp"
 include(":app")
-include(":lib:requests")
+include(":lib:http-requests")
 include(":lib:preferences")
 include(":lib:entities")

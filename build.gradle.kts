@@ -2,6 +2,7 @@ import com.android.build.gradle.BaseExtension
 
 val kotlinVersion by rootProject.extra { "1.12.0" }
 val daggerHiltVersion by rootProject.extra { "2.49" }
+val gsonVersion by rootProject.extra { "2.10.1" }
 val retrofitVersion by rootProject.extra { "2.9.0" }
 val okhttpVersion by rootProject.extra { "4.10.0" }
 val rxJavaVersion by rootProject.extra { "2.2.6" }
@@ -56,9 +57,9 @@ subprojects {
         apply(plugin = "com.google.dagger.hilt.android")
 
         dependencies {
-            add("implementation", "junit:junit:4.13.2")
             add("implementation", "com.google.dagger:hilt-android:${rootProject.extra.get("daggerHiltVersion")}")
             add("kapt", "com.google.dagger:hilt-android-compiler:${rootProject.extra.get("daggerHiltVersion")}")
+            add("testImplementation", "junit:junit:4.13.2")
         }
     }
 
@@ -84,9 +85,13 @@ subprojects {
                         getDefaultProguardFile("proguard-android-optimize.txt"),
                         "proguard-rules.pro"
                     )
+
+                    buildConfigField("String", "BASE_URL", "\"http://192.168.1.200\"")
                 }
                 getByName("debug") {
                     isDebuggable = true
+
+                    buildConfigField("String", "BASE_URL", "\"http://192.168.1.200\"")
                 }
             }
 

@@ -20,7 +20,7 @@ abstract class BaseRetrofit : RetrofitService {
         OkHttpClient.Builder()
             .addInterceptor(
                 HttpLoggingInterceptor().setLevel(
-                    if (BuildConfig.DEBUG) //TODO corregir
+                    if (BuildConfig.DEBUG)
                         HttpLoggingInterceptor.Level.BODY
                     else
                         HttpLoggingInterceptor.Level.NONE

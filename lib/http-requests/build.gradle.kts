@@ -10,6 +10,8 @@ dependencies {
 //    androidTestImplementation("androidx.test.ext:junit:1.1.5")
 //    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    implementation("com.google.code.gson:gson:${rootProject.extra.get("gsonVersion")}")
+
     implementation("com.squareup.retrofit2:retrofit:${rootProject.extra.get("retrofitVersion")}")
     implementation("com.squareup.retrofit2:converter-gson:${rootProject.extra.get("retrofitVersion")}")
     implementation("com.squareup.retrofit2:adapter-rxjava2:${rootProject.extra.get("retrofitVersion")}")
@@ -21,5 +23,8 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxandroid:${rootProject.extra.get("rxAndroidVersion")}")
 
     implementation(project(":lib:entities"))
+    implementation(project(":lib:preferences"))
+
+
 
 }
