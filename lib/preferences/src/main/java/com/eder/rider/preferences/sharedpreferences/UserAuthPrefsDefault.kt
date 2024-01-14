@@ -2,9 +2,11 @@ package com.eder.rider.preferences.sharedpreferences
 
 import android.content.Context
 import com.eder.rider.entities.UserAuth
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class UserAuthPrefsDefault(
-    context: Context
+class UserAuthPrefsDefault @Inject constructor(
+    @ApplicationContext context: Context
 ) : SharedPreferencesBase(context, "UserAuthPrefs"), UserAuthPrefs {
 
     override fun saveUserAuth(userAuth: UserAuth) {

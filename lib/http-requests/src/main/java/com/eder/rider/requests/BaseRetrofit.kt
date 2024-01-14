@@ -12,11 +12,7 @@ abstract class BaseRetrofit : RetrofitService {
 
     abstract val baseUrl: String
 
-    private val gson: Gson = GsonBuilder()
-        .setLenient()
-        .create()
-
-    private val okHttpClient: OkHttpClient by lazy {
+    open val okHttpClient: OkHttpClient.Builder by lazy {
         OkHttpClient.Builder()
             .addInterceptor(
                 HttpLoggingInterceptor().setLevel(
@@ -29,15 +25,18 @@ abstract class BaseRetrofit : RetrofitService {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
-            .build()
     }
+
+    private val gson: Gson = GsonBuilder()
+        .setLenient()
+        .create()
 
     private val retrofit: retrofit2.Retrofit by lazy {
         retrofit2.Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(okHttpClient)
+            .client(okHttpClient.build())
             .build()
     }
 

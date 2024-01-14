@@ -18,5 +18,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation(project(":lib:http-requests"))
+    implementation(project(":lib:strings"))
+    implementation(project(":lib:entities"))
 
 }

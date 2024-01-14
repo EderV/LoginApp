@@ -29,20 +29,19 @@ allprojects {
 }
 
 subprojects {
-
     /*
-        If there are modules inside a folder, do not apply plugins to parent folder
+           If there are modules inside a folder, do not apply plugins to parent folder
 
-        Example:
-            - LoginApp
-            -- app
-            -- lib
-            ---- api
-            ---- files
+           Example:
+               - LoginApp
+               -- app
+               -- lib
+               ---- api
+               ---- files
 
-        "lib" will be considered as subproject, but we are using it as a folder for other subprojects.
-        Do not apply any plugin to that "subproject" to avoid gradle problems
-     */
+           "lib" will be considered as subproject, but we are using it as a folder for other subprojects.
+           Do not apply any plugin to that "subproject" to avoid gradle problems
+        */
 
     if (this@subprojects.name == "app") {
         apply(plugin = "com.android.application")
