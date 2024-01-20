@@ -1,7 +1,6 @@
 package com.eder.rider.preferences.sharedpreferences
 
 import android.content.Context
-import com.eder.rider.entities.UserAuth
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -9,7 +8,7 @@ class UserAuthPrefsDefault @Inject constructor(
     @ApplicationContext context: Context
 ) : SharedPreferencesBase(context, "UserAuthPrefs"), UserAuthPrefs {
 
-    override fun saveUserAuth(userAuth: UserAuth) {
+    override fun saveUserAuth(userAuth: es.evm.exmpl.common.model.UserAuth) {
         val map = HashMap<String, String>()
         map[KEY_USER_ID] = userAuth.id
         map[KEY_AUTH_TOKEN] = userAuth.authToken
@@ -18,8 +17,8 @@ class UserAuthPrefsDefault @Inject constructor(
         saveMapString(map)
     }
 
-    override fun getUserAuth(): UserAuth {
-        return UserAuth(getUserId(), getAuthToken(), getRefreshToken())
+    override fun getUserAuth(): es.evm.exmpl.common.model.UserAuth {
+        return es.evm.exmpl.common.model.UserAuth(getUserId(), getAuthToken(), getRefreshToken())
     }
 
     override fun getUserId(): String {

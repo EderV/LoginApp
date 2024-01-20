@@ -7,6 +7,7 @@ val retrofitVersion by rootProject.extra { "2.9.0" }
 val okhttpVersion by rootProject.extra { "4.10.0" }
 val rxJavaVersion by rootProject.extra { "2.2.6" }
 val rxAndroidVersion by rootProject.extra { "2.1.1" }
+val androidMaterialVersion by rootProject.extra { "1.11.0" }
 
 plugins {
     id("com.android.application") version "8.2.0" apply false
@@ -30,18 +31,18 @@ allprojects {
 
 subprojects {
     /*
-           If there are modules inside a folder, do not apply plugins to parent folder
+        If there are modules inside a folder, do not apply plugins to parent folder
 
-           Example:
-               - LoginApp
-               -- app
-               -- lib
-               ---- api
-               ---- files
+        Example:
+            - LoginApp
+            -- app
+            -- lib
+            ---- api
+            ---- files
 
-           "lib" will be considered as subproject, but we are using it as a folder for other subprojects.
-           Do not apply any plugin to that "subproject" to avoid gradle problems
-        */
+        "lib" will be considered as subproject, but we are using it as a folder for other subprojects.
+        Do not apply any plugin to that "subproject" to avoid gradle problems
+   */
 
     if (this@subprojects.name == "app") {
         apply(plugin = "com.android.application")
@@ -55,53 +56,57 @@ subprojects {
         apply(plugin = "kotlin-kapt")
         apply(plugin = "com.google.dagger.hilt.android")
 
+        // https://stackoverflow.com/questions/57627119/android-subprojects-with-kotlin-dsl?rq=3
+        plugins.withType<BasePlugin> {
+            configure<BaseExtension> {
+
+                defaultConfig {
+                    if (this@subprojects.name == "app") applicationId = "com.eder.rider.androidhilt"
+                    minSdk = 26
+                    targetSdk = 34
+                    compileSdkVersion(34)
+                    versionCode = 1
+                    versionName = "1.0"
+
+                    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                }
+
+                buildTypes {
+                    getByName("release") {
+                        isMinifyEnabled = false
+                        proguardFiles(
+                            getDefaultProguardFile("proguard-android-optimize.txt"),
+                            "proguard-rules.pro"
+                        )
+
+                        buildConfigField("String", "BASE_URL", "\"http://192.168.1.200:8080\"")
+                    }
+                    getByName("debug") {
+                        isDebuggable = true
+
+                        buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:8080\"")
+                    }
+                }
+
+                compileOptions {
+                    sourceCompatibility = JavaVersion.VERSION_17
+                    targetCompatibility = JavaVersion.VERSION_17
+                }
+
+                buildFeatures.buildConfig = true
+                buildFeatures.viewBinding = true
+
+                dataBinding.enable = true
+
+            }
+        }
+
         dependencies {
+            add("implementation", "com.google.code.gson:gson:${rootProject.extra.get("gsonVersion")}")
+
             add("implementation", "com.google.dagger:hilt-android:${rootProject.extra.get("daggerHiltVersion")}")
             add("kapt", "com.google.dagger:hilt-android-compiler:${rootProject.extra.get("daggerHiltVersion")}")
             add("testImplementation", "junit:junit:4.13.2")
-        }
-    }
-
-    // https://stackoverflow.com/questions/57627119/android-subprojects-with-kotlin-dsl?rq=3
-    plugins.withType<BasePlugin> {
-        configure<BaseExtension> {
-
-            defaultConfig {
-                if (this@subprojects.name == "app") applicationId = "com.eder.rider.androidhilt"
-                minSdk = 26
-                targetSdk = 34
-                compileSdkVersion(34)
-                versionCode = 1
-                versionName = "1.0"
-
-                testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-            }
-
-            buildTypes {
-                getByName("release") {
-                    isMinifyEnabled = false
-                    proguardFiles(
-                        getDefaultProguardFile("proguard-android-optimize.txt"),
-                        "proguard-rules.pro"
-                    )
-
-                    buildConfigField("String", "BASE_URL", "\"http://192.168.1.200\"")
-                }
-                getByName("debug") {
-                    isDebuggable = true
-
-                    buildConfigField("String", "BASE_URL", "\"http://192.168.1.200\"")
-                }
-            }
-
-            compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_17
-                targetCompatibility = JavaVersion.VERSION_17
-            }
-
-            buildFeatures.buildConfig = true
-            buildFeatures.viewBinding = true
-
         }
     }
 

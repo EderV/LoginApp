@@ -1,12 +1,10 @@
 package com.eder.rider.preferences.sharedpreferences
 
-import com.eder.rider.entities.UserAuth
-
 interface UserAuthPrefs {
 
-    fun saveUserAuth(userAuth: UserAuth)
+    fun saveUserAuth(userAuth: es.evm.exmpl.common.model.UserAuth)
 
-    fun getUserAuth(): UserAuth
+    fun getUserAuth(): es.evm.exmpl.common.model.UserAuth
 
     fun getUserId(): String
 

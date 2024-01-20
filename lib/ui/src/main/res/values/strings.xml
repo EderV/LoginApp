@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">LoginApp</string>
+
+    <string name="login_success">Logged in successfully</string>
+    <string name="login_failed">Failed login in. Username or password is not correct</string>
+
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="not_have_account">New here? Go to sign up</string>
+
+</resources>

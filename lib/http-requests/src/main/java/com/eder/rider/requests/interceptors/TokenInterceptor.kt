@@ -1,6 +1,6 @@
 package com.eder.rider.requests.interceptors
 
-import com.eder.rider.entities.UserAuth
+import es.evm.exmpl.common.model.UserAuth
 import com.eder.rider.preferences.sharedpreferences.UserAuthPrefs
 import com.eder.rider.requests.RetrofitHelper
 import com.google.gson.Gson
