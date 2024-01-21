@@ -12,8 +12,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import es.evm.exmpl.common.di.anotations.BasicGson
-import es.evm.exmpl.common.di.anotations.LenientGson
+import com.eder.rider.common.di.anotations.BasicGson
+import com.eder.rider.common.di.anotations.LenientGson
+import com.eder.rider.requests.services.TestService
 import javax.inject.Singleton
 
 @Module
@@ -43,6 +44,12 @@ class RetrofitModule {
     @Singleton
     fun provideAuthService(@AuthRetrofit retrofitService: RetrofitService): AuthService {
         return retrofitService.createRetrofitService(AuthService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTestService(@DefaultRetrofit retrofitService: RetrofitService): TestService {
+        return retrofitService.createRetrofitService(TestService::class.java)
     }
 
 }

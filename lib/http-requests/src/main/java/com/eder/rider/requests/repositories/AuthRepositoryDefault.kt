@@ -1,8 +1,9 @@
 package com.eder.rider.requests.repositories
 
 import android.util.Log
-import es.evm.exmpl.common.model.UserAuth
+import com.eder.rider.common.model.UserAuth
 import com.eder.rider.requests.model.UserLogin
+import com.eder.rider.requests.model.UserRegister
 import com.eder.rider.requests.services.AuthService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -23,6 +24,21 @@ class AuthRepositoryDefault @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 success.invoke(it)
+            }, {
+                failure.invoke(it.message ?: "")
+            })
+    }
+
+    override fun register(
+        userRegister: UserRegister,
+        success: () -> Unit,
+        failure: (String) -> Unit
+    ): Disposable {
+        return authService.register(userRegister)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                success.invoke()
             }, {
                 failure.invoke(it.message ?: "")
             })

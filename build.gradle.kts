@@ -5,7 +5,7 @@ val daggerHiltVersion by rootProject.extra { "2.49" }
 val gsonVersion by rootProject.extra { "2.10.1" }
 val retrofitVersion by rootProject.extra { "2.9.0" }
 val okhttpVersion by rootProject.extra { "4.10.0" }
-val rxJavaVersion by rootProject.extra { "2.2.6" }
+val rxJavaVersion by rootProject.extra { "2.2.19" }
 val rxAndroidVersion by rootProject.extra { "2.1.1" }
 val androidMaterialVersion by rootProject.extra { "1.11.0" }
 
@@ -44,14 +44,16 @@ subprojects {
         Do not apply any plugin to that "subproject" to avoid gradle problems
    */
 
+    val excludedSubprojects = arrayListOf("lib", "feat")
+
     if (this@subprojects.name == "app") {
         apply(plugin = "com.android.application")
     }
-    else if (this@subprojects.name != "lib") {
+    else if (excludedSubprojects.none { it == this@subprojects.name }) {
         apply(plugin = "com.android.library")
     }
 
-    if (this@subprojects.name != "lib") {
+    if (excludedSubprojects.none { it == this@subprojects.name }) {
         apply(plugin = "org.jetbrains.kotlin.android")
         apply(plugin = "kotlin-kapt")
         apply(plugin = "com.google.dagger.hilt.android")
@@ -106,6 +108,7 @@ subprojects {
 
             add("implementation", "com.google.dagger:hilt-android:${rootProject.extra.get("daggerHiltVersion")}")
             add("kapt", "com.google.dagger:hilt-android-compiler:${rootProject.extra.get("daggerHiltVersion")}")
+
             add("testImplementation", "junit:junit:4.13.2")
         }
     }

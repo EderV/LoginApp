@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.eder.rider.loginapp.viewmodels.LoginViewModel
 import com.eder.rider.preferences.sharedpreferences.UserAuthPrefs
 import com.eder.rider.requests.repositories.AuthRepository
-import es.evm.exmpl.common.logger.Logger
+import com.eder.rider.common.logger.Logger
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
@@ -20,7 +20,7 @@ class LoginViewModelFactory @Inject constructor(
             LoginViewModel(logger, authRepository, userAuthPrefs) as T
         }
         else {
-            throw IllegalArgumentException("ViewModel not found")
+            throw IllegalArgumentException("ViewModel not found: ${modelClass.name}")
         }
     }
 }

@@ -1,5 +1,5 @@
 android {
-    namespace = "es.evm.exmpl.ui"
+    namespace = "com.eder.rider.ui"
 }
 
 dependencies {

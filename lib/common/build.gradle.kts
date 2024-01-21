@@ -1,3 +1,3 @@
 android {
-    namespace = "es.evm.exmpl.common"
+    namespace = "com.eder.rider.common"
 }

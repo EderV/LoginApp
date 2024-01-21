@@ -1,6 +1,6 @@
 package com.eder.rider.requests.interceptors
 
-import es.evm.exmpl.common.model.UserAuth
+import com.eder.rider.common.model.UserAuth
 import com.eder.rider.preferences.sharedpreferences.UserAuthPrefs
 import com.eder.rider.requests.RetrofitHelper
 import com.google.gson.Gson
@@ -20,7 +20,7 @@ class TokenInterceptor (
         val request = chain.request()
         val requestBuilder = request.newBuilder()
 
-        val authToken = authPrefs.getAuthToken()
+        val authToken = authPrefs.getAccessToken()
         if (authToken.isNotBlank()) {
             requestBuilder.addHeader("Authorization", "Bearer $authToken")
         }
@@ -46,22 +46,15 @@ class TokenInterceptor (
     ): Response {
         val newAuthToken = requestNewAuthToken(chain)
 
-        if (newAuthToken.isNotBlank()) {
-            return originalRequest.newBuilder()
-                .addHeader("Authorization", "Bearer $newAuthToken")
-                .build()
-                .let {
-                    chain.proceed(it)
-                }.also {
-                    if (!it.isSuccessful) // If still unsuccessful, log out
-                        onForceLogout.invoke()
-                }
-        }
-        else {
-            return chain.proceed(originalRequest).also {
-                onForceLogout.invoke()
+        return originalRequest.newBuilder()
+            .addHeader("Authorization", "Bearer $newAuthToken")
+            .build()
+            .let {
+                chain.proceed(it)
+            }.also {
+                if (!it.isSuccessful) // If still unsuccessful, log out
+                    onForceLogout.invoke()
             }
-        }
     }
 
     private fun requestNewAuthToken(chain: Interceptor.Chain): String {
@@ -84,7 +77,7 @@ class TokenInterceptor (
             newUserAuth?.let {
                 authPrefs.saveUserAuth(newUserAuth)
 
-                return newUserAuth.authToken
+                return newUserAuth.accessToken
             }
 
             return ""

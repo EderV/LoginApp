@@ -1,15 +1,10 @@
 package com.eder.rider.preferences.sharedpreferences
 
-import android.content.Context
 import android.content.SharedPreferences
 
-open class SharedPreferencesBase(
-    context: Context,
-    prefsName: String
-) {
+abstract class SharedPreferencesBase {
 
-    private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+    abstract val sharedPreferences: SharedPreferences
 
     fun saveString(key: String, value: String) {
         sharedPreferences.edit().putString(key, value).apply()

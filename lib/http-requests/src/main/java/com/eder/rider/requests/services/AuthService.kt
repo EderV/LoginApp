@@ -1,7 +1,8 @@
 package com.eder.rider.requests.services
 
 import com.eder.rider.requests.model.UserLogin
-import es.evm.exmpl.common.model.UserAuth
+import com.eder.rider.requests.model.UserRegister
+import com.eder.rider.common.model.UserAuth
 import io.reactivex.Flowable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -13,6 +14,11 @@ interface AuthService {
     fun login(
         @Body body: UserLogin
     ): Flowable<UserAuth>
+
+    @POST("/api/auth/register")
+    fun register(
+        @Body body: UserRegister
+    ): Flowable<String>
 
     @GET("/api/test")
     fun test(): Flowable<String>

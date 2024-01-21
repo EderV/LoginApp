@@ -12,6 +12,7 @@ dependencies {
 
     implementation("com.squareup.retrofit2:retrofit:${rootProject.extra.get("retrofitVersion")}")
     implementation("com.squareup.retrofit2:converter-gson:${rootProject.extra.get("retrofitVersion")}")
+    implementation("com.squareup.retrofit2:converter-scalars:${rootProject.extra.get("retrofitVersion")}")
     implementation("com.squareup.retrofit2:adapter-rxjava2:${rootProject.extra.get("retrofitVersion")}")
 
     implementation("com.squareup.okhttp3:okhttp:${rootProject.extra.get("okhttpVersion")}")

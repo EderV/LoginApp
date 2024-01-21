@@ -1,19 +1,19 @@
 package com.eder.rider.loginapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.eder.rider.common.Progress
+import com.eder.rider.common.logger.Logger
+import com.eder.rider.common.viewmodels.FormsViewModel
 import com.eder.rider.preferences.sharedpreferences.UserAuthPrefs
 import com.eder.rider.requests.model.UserLogin
 import com.eder.rider.requests.repositories.AuthRepository
-import es.evm.exmpl.common.Progress
-import es.evm.exmpl.common.logger.Logger
 import io.reactivex.disposables.Disposable
 
 class LoginViewModel(
     private val logger: Logger,
     private val authRepository: AuthRepository,
     private val userAuthPrefs: UserAuthPrefs,
-) : ViewModel() {
+) : FormsViewModel() {
 
     val overlayProgressMld = MutableLiveData<Progress>().apply {
         value = Progress.hide()
@@ -26,7 +26,7 @@ class LoginViewModel(
         failure: () -> Unit
     ) {
         overlayProgressMld.value = Progress.show()
-        authRepository.login(
+        loginDisposable = authRepository.login(
             userLogin,
             {
                 userAuthPrefs.saveUserAuth(it)
@@ -36,6 +36,24 @@ class LoginViewModel(
                 failure.invoke()
             }
         )
+    }
+
+    @Throws(IllegalArgumentException::class)
+    fun verifyUsername(username: String): Boolean {
+        if (super.containsIllegalCharacters(username)) {
+            throw IllegalArgumentException("Username contains illegal characters")
+        }
+
+        return true
+    }
+
+    @Throws(IllegalArgumentException::class)
+    fun verifyPassword(password: String): Boolean {
+        if (super.containsIllegalCharacters(password)) {
+            throw IllegalArgumentException("Password contains illegal characters")
+        }
+
+        return true
     }
 
     override fun onCleared() {
