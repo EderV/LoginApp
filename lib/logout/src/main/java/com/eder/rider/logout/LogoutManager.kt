@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.eder.rider.common.GlobalConstants
-import com.eder.rider.common.toaster.Toaster
 import com.eder.rider.preferences.sharedpreferences.UserAuthPrefs
 import com.eder.rider.ui.R
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -41,9 +40,9 @@ class LogoutManager @Inject constructor(
             .apply {
                 setOnShowListener {
                     getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setBackgroundColor(activity.resources.getColor(R.color.primary, activity.resources.newTheme()))
+                        .setTextColor(activity.resources.getColor(R.color.primary, activity.resources.newTheme()))
                     getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setBackgroundColor(activity.resources.getColor(R.color.accent, activity.resources.newTheme()))
+                        .setTextColor(activity.resources.getColor(R.color.accent, activity.resources.newTheme()))
                 }
             }
             .show()

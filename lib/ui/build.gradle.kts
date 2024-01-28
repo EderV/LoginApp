@@ -3,8 +3,10 @@ android {
 }
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
+
+    implementation("androidx.core:core-ktx:${rootProject.extra.get("kotlinVersion")}")
+    implementation("androidx.appcompat:appcompat:${rootProject.extra.get("androidxAppcompatVersion")}")
+    implementation("com.google.android.material:material:${rootProject.extra.get("androidMaterialVersion")}")
 
     implementation(project(":lib:common"))
 }

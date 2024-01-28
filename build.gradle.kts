@@ -3,11 +3,20 @@ import com.android.build.gradle.BaseExtension
 val kotlinVersion by rootProject.extra { "1.12.0" }
 val daggerHiltVersion by rootProject.extra { "2.49" }
 val gsonVersion by rootProject.extra { "2.10.1" }
+
 val retrofitVersion by rootProject.extra { "2.9.0" }
 val okhttpVersion by rootProject.extra { "4.10.0" }
+
 val rxJavaVersion by rootProject.extra { "2.2.19" }
 val rxAndroidVersion by rootProject.extra { "2.1.1" }
+
 val androidMaterialVersion by rootProject.extra { "1.11.0" }
+val androidxAppcompatVersion by rootProject.extra { "1.6.1" }
+val androidxConstraintVersion by rootProject.extra { "2.1.4" }
+
+val jUnitVersion by rootProject.extra { "4.13.2" }
+val jUnitExtVersion by rootProject.extra { "1.1.5" }
+val espressoCoreVersion by rootProject.extra { "3.5.1" }
 
 plugins {
     id("com.android.application") version "8.2.0" apply false
@@ -109,7 +118,7 @@ subprojects {
             add("implementation", "com.google.dagger:hilt-android:${rootProject.extra.get("daggerHiltVersion")}")
             add("kapt", "com.google.dagger:hilt-android-compiler:${rootProject.extra.get("daggerHiltVersion")}")
 
-            add("testImplementation", "junit:junit:4.13.2")
+            add("testImplementation", "junit:junit:${rootProject.extra.get("jUnitVersion")}")
         }
     }
 
