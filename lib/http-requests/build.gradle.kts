@@ -22,6 +22,7 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxandroid:${rootProject.extra.get("rxAndroidVersion")}")
 
     implementation(project(":lib:preferences"))
+    implementation(project(":lib:logout"))
     implementation(project(":lib:common"))
 
 }

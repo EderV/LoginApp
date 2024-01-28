@@ -18,6 +18,7 @@ dependencies {
 
     implementation(project(":lib:http-requests"))
     implementation(project(":lib:preferences"))
+    implementation(project(":lib:logout"))
     implementation(project(":lib:common"))
     implementation(project(":lib:ui"))
 

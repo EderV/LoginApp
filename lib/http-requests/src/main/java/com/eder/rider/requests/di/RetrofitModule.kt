@@ -14,6 +14,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import com.eder.rider.common.di.anotations.BasicGson
 import com.eder.rider.common.di.anotations.LenientGson
+import com.eder.rider.logout.LogoutManager
 import com.eder.rider.requests.services.TestService
 import javax.inject.Singleton
 
@@ -27,9 +28,10 @@ class RetrofitModule {
         @LenientGson lenientGson: Gson,
         interceptorFactory: InterceptorFactory,
         authPrefs: UserAuthPrefs,
-        @BasicGson gson: Gson
+        @BasicGson gson: Gson,
+        logoutManager: LogoutManager
     ): RetrofitService {
-        return RetrofitDefault(gson, interceptorFactory, authPrefs, lenientGson)
+        return RetrofitDefault(gson, interceptorFactory, authPrefs, lenientGson, logoutManager)
     }
 
     @Provides

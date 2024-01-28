@@ -37,6 +37,15 @@ class UserAuthPrefsDefault @Inject constructor(
         saveMapString(map)
     }
 
+    override fun deleteUserAuth() {
+        val map = HashMap<String, String>()
+        map[KEY_USER_ID] = ""
+        map[KEY_ACCESS_TOKEN] = ""
+        map[KEY_REFRESH_TOKEN] = ""
+
+        saveMapString(map)
+    }
+
     override fun getUserAuth(): UserAuth {
         return UserAuth(getUserId(), getAccessToken(), getRefreshToken())
     }

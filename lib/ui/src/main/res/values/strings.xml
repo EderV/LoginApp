@@ -24,4 +24,9 @@
 
     <string name="something_went_wrong">Something went wrong :(</string>
 
+    <string name="logout_dialog_title">Confirm logout</string>
+    <string name="yes">Yes</string>
+    <string name="no">no</string>
+    <string name="login_again">Session expired, please login again</string>
+
 </resources>

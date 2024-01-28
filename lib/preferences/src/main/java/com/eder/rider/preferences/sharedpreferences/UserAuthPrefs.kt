@@ -6,6 +6,8 @@ interface UserAuthPrefs {
 
     fun saveUserAuth(userAuth: UserAuth)
 
+    fun deleteUserAuth()
+
     fun getUserAuth(): UserAuth
 
     fun getUserId(): String
