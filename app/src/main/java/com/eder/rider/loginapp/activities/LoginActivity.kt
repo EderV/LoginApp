@@ -82,9 +82,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkUsername(username: String): Boolean {
+        if (username.isEmpty()) {
+            binding.usernameTextInputLayout.error = resources.getString(R.string.field_empty)
+            return false
+        }
+
         try {
             if (viewModel.verifyUsername(username)) {
-                binding.usernameTextInputLayout.error = ""
+                binding.usernameTextInputLayout.error = null
+                binding.usernameTextInputLayout.isErrorEnabled = false
                 return true
             }
         } catch (ex: IllegalArgumentException) {
@@ -95,9 +101,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkPassword(password: String): Boolean {
+        if (password.isEmpty()) {
+            binding.passwordTextInputLayout.error = resources.getString(R.string.field_empty)
+            return false
+        }
+
         try {
             if (viewModel.verifyPassword(password)) {
-                binding.passwordTextInputLayout.error = ""
+                binding.passwordTextInputLayout.error = null
+                binding.passwordTextInputLayout.isErrorEnabled = false
 
                 return true
             }

@@ -13,11 +13,15 @@
     <string name="repeat_password">Repeat Password</string>
     <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
-    <string name="not_have_account">New here? Go to sign up</string>
+    <string name="new_here">New here?\u0020\u0020</string>
+    <string name="have_account">Have an account?\u0020\u0020</string>
+    <string name="go_signup">Go to sign up</string>
+    <string name="go_login">Go to login</string>
 
     <string name="field_with_illegal_characters">This field contains illegal characters</string>
     <string name="invalid_email">Email is incorrect. Example: user@email.com</string>
     <string name="passwords_not_match">Passwords do not match</string>
+    <string name="field_empty">Field is empty</string>
 
     <string name="test_endpoint">Test endpoint</string>
     <string name="test_endpoint_result">Result: </string>

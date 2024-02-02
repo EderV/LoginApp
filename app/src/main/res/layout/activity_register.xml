@@ -27,8 +27,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -66,18 +66,18 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:endIconMode="password_toggle"
                 android:layout_marginTop="@dimen/min_margin_textInput"
-                app:layout_constraintTop_toBottomOf="@id/usernameTextInputLayout"
+                app:endIconMode="password_toggle"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/usernameTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,18 +86,18 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:endIconMode="password_toggle"
                 android:layout_marginTop="@dimen/min_margin_textInput"
-                app:layout_constraintTop_toBottomOf="@id/passwordTextInputLayout"
+                app:endIconMode="password_toggle"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/passwordTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etRepeatPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/repeat_password"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,16 +108,40 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/sign_up"
-                app:layout_constraintTop_toBottomOf="@id/repeatPwdTextInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/repeatPwdTextInputLayout" />
+
+            <TextView
+                android:id="@+id/tvNewHere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="72dp"
+                android:text="@string/have_account"
+                app:layout_constraintEnd_toStartOf="@+id/btnGoLogin"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+
+            <TextView
+                android:id="@+id/btnGoLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="72dp"
+                android:text="@string/go_login"
+                android:textColor="@color/accent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvNewHere"
+                app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <include
-            layout="@layout/overlay_progress"
-            app:show="@{progress.status == Progress.ProgressStatus.SHOW}"
-            app:message="@{progress.message}"/>
+<!--        <include-->
+<!--            layout="@layout/overlay_progress"-->
+<!--            app:show="@{progress.status == Progress.ProgressStatus.SHOW}"-->
+<!--            app:message="@{progress.message}"/>-->
 
     </FrameLayout>
 

@@ -36,6 +36,12 @@ class RegisterActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Register"
 
+        binding.btnGoLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            super.startActivity(intent)
+            super.finish()
+        }
+
         binding.btnRegister.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val username = binding.etUsername.text.toString()
@@ -76,9 +82,15 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun checkEmail(email: String): Boolean {
+        if (email.isEmpty()) {
+            binding.emailTextInputLayout.error = resources.getString(R.string.field_empty)
+            return false
+        }
+
         try {
             if (viewModel.verifyEmail(email)) {
-                binding.emailTextInputLayout.error = ""
+                binding.emailTextInputLayout.error = null
+                binding.emailTextInputLayout.isErrorEnabled = false
 
                 return true
             }
@@ -93,9 +105,15 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun checkUsername(username: String): Boolean {
+        if (username.isEmpty()) {
+            binding.usernameTextInputLayout.error = resources.getString(R.string.field_empty)
+            return false
+        }
+
         try {
             if (viewModel.verifyUsername(username)) {
-                binding.usernameTextInputLayout.error = ""
+                binding.usernameTextInputLayout.error = null
+                binding.usernameTextInputLayout.isErrorEnabled = false
                 return true
             }
         } catch (ex: IllegalArgumentException) {
@@ -106,10 +124,22 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun checkPasswords(password: String, repeatPassword: String): Boolean {
+        if (password.isEmpty()) {
+            binding.passwordTextInputLayout.error = resources.getString(R.string.field_empty)
+            return false
+        }
+
+        if (repeatPassword.isEmpty()) {
+            binding.repeatPwdTextInputLayout.error = resources.getString(R.string.field_empty)
+            return false
+        }
+
         try {
             if (viewModel.verifyMatchPasswords(password, repeatPassword)) {
-                binding.passwordTextInputLayout.error = ""
-                binding.repeatPwdTextInputLayout.error = ""
+                binding.passwordTextInputLayout.error = null
+                binding.passwordTextInputLayout.isErrorEnabled = false
+                binding.repeatPwdTextInputLayout.error = null
+                binding.repeatPwdTextInputLayout.isErrorEnabled = false
 
                 return true
             }
