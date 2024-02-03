@@ -14,6 +14,12 @@ Android basic project which implements user registration and login using Retrofi
     * Run `adb install app-release.apk` command
 
 ## Features 🔬
+# General
+* Dependency injection with hilt
+* Clean code
+* Modularized
+* Project gradle file has the common configuration of all subprojects
+# User
 * Login of an exiting user
   * Checks empty fields
   * Checks illegal characters
